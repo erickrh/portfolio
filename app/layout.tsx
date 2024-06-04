@@ -5,7 +5,7 @@ import theme from './theme';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Erick Riaño',
   description: 'Erick Riaño Portfolio',
 };
 
