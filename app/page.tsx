@@ -26,6 +26,10 @@ export default function Home() {
           '& .MuiBottomNavigationAction-root': {
             color: 'grey',
           },
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
         }}
       >
         <BottomNavigationAction label='Home' icon={<HomeIcon />} />
