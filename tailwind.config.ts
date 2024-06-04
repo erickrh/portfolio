@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         'background-beige': '#F0F0E8',
+        'custom-black': '#181818',
+        'grayish-yellow': '#f0f0e8',
       },
     },
   },
