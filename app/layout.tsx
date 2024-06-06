@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <body>{children}</body>
+          <body className='bg-background-beige'>{children}</body>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
