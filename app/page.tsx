@@ -15,7 +15,9 @@ export default function Home() {
   const theme = useTheme();
   const [focusIcon, setFocusIcon] = useState(0);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isIntersectingTechStack, setIsIntersectingTechStack] = useState(false);
   const ref = useRef(null);
+  const techStackRef = useRef(null);
   const [isPhotoActive, setIsPhotoActive] = useState(false);
 
   const handleClickPhoto = () => {
@@ -30,6 +32,26 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsIntersecting(true);
+        observer.disconnect();
+      }
+    });
+
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const element = techStackRef.current;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setIsIntersectingTechStack(true);
         observer.disconnect();
       }
     });
@@ -159,8 +181,10 @@ export default function Home() {
       </h2>
 
       {/* Tech Stack */}
-      <div className='m-5 flex flex-wrap gap-2'>
-        <div className='group flex h-10 w-[8.2rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out animate-delay-100 animate-once hover:h-11 hover:w-36 hover:bg-custom-black'>
+      <div className='m-5 flex flex-wrap gap-2' ref={techStackRef}>
+        <div
+          className={`group flex h-10 w-[8.2rem] ${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-200 ease-in-out animate-delay-100 animate-once' : 'opacity-0'} cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-36 hover:bg-custom-black`}
+        >
           <svg
             viewBox='0 0 50 50'
             width='35px'
@@ -172,7 +196,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Javascript</p>
         </div>
 
-        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-200 ease-in-out animate-delay-200 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-200 ease-in-out animate-delay-200 animate-once' : 'opacity-0'} group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg width='32px' height='32px' viewBox='0 0 256 256' preserveAspectRatio='xMidYMid'>
             <g>
               <path
@@ -185,7 +211,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Next.js</p>
         </div>
 
-        <div className='group flex h-10 w-[7rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out animate-delay-300 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-200 ease-in-out animate-delay-300 animate-once' : 'opacity-0'} group flex h-10 w-[7rem] cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg
             width='35px'
             height='35px'
@@ -200,7 +228,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>React.js</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-200 ease-in-out animate-delay-[400ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-200 ease-in-out animate-delay-[400ms] animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-40 hover:bg-custom-black`}
+        >
           <div className='group-hover:bg-white'>
             <svg width='30px' height='30px' viewBox='0 0 128 128' id='typescript'>
               <path
@@ -212,7 +242,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Typescript</p>
         </div>
 
-        <div className='group flex h-10 w-[7rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-500 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-500 animate-once' : 'opacity-0'} group flex h-10 w-[7rem] cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg
             width='35px'
             height='35px'
@@ -226,7 +258,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Redux</p>
         </div>
 
-        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[600ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[600ms] animate-once' : 'opacity-0'} group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg
             className='group-hover:fill-[#E44D26]'
             width='42px'
@@ -239,7 +273,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>HTML</p>
         </div>
 
-        <div className='group flex h-10 w-20 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-700 animate-once hover:h-11 hover:w-[5.5rem] hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-700 animate-once' : 'opacity-0'} group flex h-10 w-20 cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-[5.5rem] hover:bg-custom-black`}
+        >
           <svg
             className='fill-taupe group-hover:fill-[#FAFAFA]'
             width='32px'
@@ -256,7 +292,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>CSS</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[800ms] animate-once hover:h-11 hover:w-[9.5rem] hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[800ms] animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-[9.5rem] hover:bg-custom-black`}
+        >
           <svg viewBox='0 0 54 33' width='28px' height='28px'>
             <g clipPath='url(#prefix__clip0)'>
               <path
@@ -275,7 +313,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>TailwindCSS</p>
         </div>
 
-        <div className='group flex h-10 w-[7.5rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[900ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[900ms] animate-once' : 'opacity-0'} group flex h-10 w-[7.5rem] cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg width='23px' height='23px' viewBox='0 0 256 263'>
             <defs>
               <linearGradient
@@ -316,7 +356,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Supabase</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-1000 animate-once hover:h-11 hover:w-[9.5rem] hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 ease-in-out animate-delay-1000 animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 hover:h-11 hover:w-[9.5rem] hover:bg-custom-black`}
+        >
           <svg
             width='28px'
             height='28px'
@@ -336,7 +378,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Bootstrap</p>
         </div>
 
-        <div className='group flex h-10 w-20 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1100ms] animate-once hover:h-11 hover:w-24 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1100ms] animate-once' : 'opacity-0'} group flex h-10 w-20 cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-24 hover:bg-custom-black`}
+        >
           <svg width='28px' height='28px' viewBox='0 0 128 128' id='git'>
             <path
               className='group-hover:fill-[#F34F29]'
@@ -346,7 +390,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Git</p>
         </div>
 
-        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1200ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 ease-in-out animate-delay-[1200ms] animate-once' : 'opacity-0'} group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg
             className='group-hover:fill-second-background-tech'
             width='32px'
@@ -359,7 +405,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Github</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1300ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1300ms] animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-40 hover:bg-custom-black`}
+        >
           <svg width='32px' height='32px' preserveAspectRatio='xMidYMid' viewBox='0 0 256 204'>
             <path
               d='m0 110.848v-110.848l96 55.424v36.9493333l-64-36.9493333v73.898667z'
@@ -381,7 +429,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Material UI</p>
         </div>
 
-        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1400ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1400ms] animate-once' : 'opacity-0'} group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg width='28px' height='28px' viewBox='0 0 410 404'>
             <path
               d='M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z'
@@ -420,7 +470,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Vite.js</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1500ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1500ms] animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-40 hover:bg-custom-black`}
+        >
           <svg width='36px' height='36px' viewBox='0 0 24 24' id='linux'>
             <path
               className='fill-second-background-tech group-hover:fill-[#d8d8ff]'
@@ -458,7 +510,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>GNU / Linux</p>
         </div>
 
-        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1600ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1600ms] animate-once' : 'opacity-0'} group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-second-background-tech hover:h-11 hover:w-32 hover:bg-custom-black`}
+        >
           <svg
             width='25px'
             height='25px'
@@ -488,7 +542,9 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Python</p>
         </div>
 
-        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1700ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div
+          className={`${isIntersectingTechStack ? 'animate-jump-in opacity-100 duration-300 ease-in-out animate-delay-[1700ms] animate-once' : 'opacity-0'} group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-taupe hover:h-11 hover:w-40 hover:bg-custom-black`}
+        >
           <svg
             className='group-hover:fill-[#05A8DA]'
             width='31px'
