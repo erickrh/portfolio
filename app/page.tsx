@@ -15,8 +15,15 @@ export default function Home() {
   const theme = useTheme();
   const [focusIcon, setFocusIcon] = useState(0);
   const [isIntersecting, setIsIntersecting] = useState(false);
-
   const ref = useRef(null);
+  const [isPhotoActive, setIsPhotoActive] = useState(false);
+
+  const handleClickPhoto = () => {
+    setIsPhotoActive(true);
+    setTimeout(() => {
+      setIsPhotoActive(false);
+    }, 1000);
+  };
 
   useEffect(() => {
     const element = ref.current;
@@ -68,7 +75,7 @@ export default function Home() {
         </BottomNavigation>
       </nav>
 
-      <div>
+      <div className='animate-fade animate-once'>
         <h1 className={`px-5 pt-20 text-3xl ${playfair.className} text-center antialiased`}>
           Improving the world through technology
         </h1>
@@ -79,8 +86,9 @@ export default function Home() {
             alt='profile image'
             width={300}
             height={300}
-            className='rounded-md'
+            className={`${isPhotoActive ? 'animate-rotate-y' : ''} cursor-pointer rounded-md`}
             priority
+            onClick={handleClickPhoto}
           />
           <p className='mx-5 leading-7'>
             I am Erick, a front-end developer and systems engineering professional passionate about
@@ -92,7 +100,7 @@ export default function Home() {
 
       <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
 
-      <div className='space-y-5'>
+      <div className='animate-fade space-y-5 animate-once'>
         <p className='mx-5 leading-7'>
           Ever since I can remember, I have loved technology. I enjoy participating in and building
           projects that fulfill a need and help improve people&apos;s lives. My journey began by
@@ -150,8 +158,9 @@ export default function Home() {
         I love working with
       </h2>
 
+      {/* Tech Stack */}
       <div className='m-5 flex flex-wrap gap-2'>
-        <div className='animate-jump-in animate-once animate-delay-100 group flex h-10 w-[8.2rem] cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div className='group flex h-10 w-[8.2rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out animate-delay-100 animate-once hover:h-11 hover:w-36 hover:bg-custom-black'>
           <svg
             viewBox='0 0 50 50'
             width='35px'
@@ -163,8 +172,8 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Javascript</p>
         </div>
 
-        <div className='animate-jump-in animate-once animate-delay-200 group flex h-10 w-28 cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out hover:h-11 hover:w-40 hover:bg-custom-black'>
-          <svg width='35px' height='35px' viewBox='0 0 256 256' preserveAspectRatio='xMidYMid'>
+        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-200 ease-in-out animate-delay-200 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg width='32px' height='32px' viewBox='0 0 256 256' preserveAspectRatio='xMidYMid'>
             <g>
               <path
                 className='duration-200 ease-in group-hover:fill-slate-100'
@@ -176,7 +185,7 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Next.js</p>
         </div>
 
-        <div className='animate-jump-in animate-once animate-delay-300 group flex h-10 w-[7rem] cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div className='group flex h-10 w-[7rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out animate-delay-300 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
           <svg
             width='35px'
             height='35px'
@@ -191,7 +200,7 @@ export default function Home() {
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>React.js</p>
         </div>
 
-        <div className='animate-jump-in animate-once animate-delay-500 group flex h-10 w-36 cursor-pointer items-center justify-center rounded-lg bg-taupe duration-200 ease-in-out hover:h-11 hover:w-40 hover:bg-custom-black'>
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-200 ease-in-out animate-delay-[400ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
           <div className='group-hover:bg-white'>
             <svg width='30px' height='30px' viewBox='0 0 128 128' id='typescript'>
               <path
@@ -201,6 +210,295 @@ export default function Home() {
             </svg>
           </div>
           <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Typescript</p>
+        </div>
+
+        <div className='group flex h-10 w-[7rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-500 animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg
+            width='35px'
+            height='35px'
+            preserveAspectRatio='xMidYMid'
+            viewBox='0 0 256 244'
+            id='redux'
+            className='group-hover:fill-[#764ABC]'
+          >
+            <path d='M177.381 169.733c9.447-.978 16.614-9.122 16.288-18.896-.325-9.773-8.47-17.592-18.243-17.592h-.651c-10.1.326-17.918 8.796-17.592 18.895.326 4.887 2.28 9.122 5.212 12.054-11.076 21.828-28.016 37.791-53.426 51.148-17.266 9.122-35.183 12.38-53.1 10.1-14.66-1.955-26.062-8.47-33.23-19.222-10.424-15.963-11.401-33.23-2.605-50.496 6.19-12.38 15.962-21.502 22.152-26.063-1.303-4.235-3.258-11.402-4.235-16.614-47.237 34.207-42.35 80.468-28.016 102.295 10.75 16.29 32.577 26.389 56.684 26.389 6.515 0 13.03-.652 19.546-2.28 41.699-8.145 73.299-32.905 91.216-69.718zm57.336-40.397c-24.759-28.995-61.245-44.958-102.944-44.958h-5.212c-2.932-5.864-9.122-9.774-15.963-9.774h-.652C99.848 74.93 92.03 83.4 92.355 93.5c.326 9.773 8.47 17.592 18.243 17.592h.651c7.167-.326 13.357-4.887 15.963-11.077h5.864c24.759 0 48.214 7.167 69.39 21.176 16.288 10.751 28.016 24.76 34.531 41.7 5.538 13.683 5.212 27.04-.652 38.443-9.121 17.266-24.432 26.714-44.63 26.714-13.031 0-25.41-3.91-31.926-6.842-3.583 3.258-10.099 8.47-14.66 11.729 14.009 6.515 28.343 10.099 42.025 10.099 31.274 0 54.404-17.267 63.2-34.533 9.447-18.896 8.795-51.474-15.637-79.165zM69.225 175.27c.326 9.774 8.47 17.592 18.243 17.592h.652c10.099-.325 17.917-8.796 17.591-18.895-.325-9.774-8.47-17.592-18.243-17.592h-.651c-.652 0-1.63 0-2.28.325-13.357-22.153-18.895-46.26-16.94-72.323 1.302-19.547 7.818-36.488 19.22-50.497 9.447-12.054 27.69-17.918 40.07-18.243 34.531-.652 49.19 42.351 50.168 59.618 4.235.977 11.402 3.258 16.289 4.887C189.434 27.366 156.857 0 125.584 0c-29.32 0-56.359 21.176-67.11 52.451-14.985 41.7-5.212 81.771 13.031 113.372-1.628 2.28-2.606 5.864-2.28 9.448z'></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Redux</p>
+        </div>
+
+        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[600ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg
+            className='group-hover:fill-[#E44D26]'
+            width='42px'
+            height='42px'
+            viewBox='0 0 40 40'
+            id='html'
+          >
+            <path d='M9.9 31.2 7.66 6h24.68L30.1 31.2 20 34Zm3.18-10.7H23.8l-.36 4-3.44.94-3.45-.93-.23-2.51h-3.1l.43 4.86L20 28.65l6.33-1.75.84-9.49H15.91l-.28-3.17h11.83l.27-3.09H12.25Z'></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>HTML</p>
+        </div>
+
+        <div className='group flex h-10 w-20 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-700 animate-once hover:h-11 hover:w-[5.5rem] hover:bg-custom-black'>
+          <svg
+            className='fill-taupe group-hover:fill-[#FAFAFA]'
+            width='32px'
+            height='32px'
+            viewBox='0 0 16 16'
+            id='css'
+          >
+            <path
+              className='fill-custom-black group-hover:fill-[#2196F3]'
+              d='m1 0 1.275 14.4L8 16l5.723-1.599L15 0z'
+            ></path>
+            <path d='m12.274 4.709-.161 1.809-.486 5.423L8 12.944l-.003.001-3.625-1.004-.253-2.836h1.776l.132 1.471 1.971.532.001-.001 1.974-.532.269-2.451-6.208.017-.176-1.676 6.533-.077.132-1.794-6.84.019-.115-1.669h8.864z'></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>CSS</p>
+        </div>
+
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[800ms] animate-once hover:h-11 hover:w-[9.5rem] hover:bg-custom-black'>
+          <svg viewBox='0 0 54 33' width='28px' height='28px'>
+            <g clipPath='url(#prefix__clip0)'>
+              <path
+                className='fill-black group-hover:fill-[#38bdf8]'
+                fillRule='evenodd'
+                d='M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z'
+                clipRule='evenodd'
+              />
+            </g>
+            <defs>
+              <clipPath id='prefix__clip0'>
+                <path fill='#fff' d='M0 0h54v32.4H0z' />
+              </clipPath>
+            </defs>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>TailwindCSS</p>
+        </div>
+
+        <div className='group flex h-10 w-[7.5rem] animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[900ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg width='23px' height='23px' viewBox='0 0 256 263'>
+            <defs>
+              <linearGradient
+                id='logosSupabaseIcon0'
+                x1='20.862%'
+                x2='63.426%'
+                y1='20.687%'
+                y2='44.071%'
+              >
+                <stop offset='0%' stopColor='#249361' />
+                <stop offset='100%' stopColor='#3ecf8e' />
+              </linearGradient>
+              <linearGradient
+                id='logosSupabaseIcon1'
+                x1='1.991%'
+                x2='21.403%'
+                y1='-13.158%'
+                y2='34.708%'
+              >
+                <stop offset='0%' />
+                <stop offset='100%' stopOpacity='0' />
+              </linearGradient>
+            </defs>
+            <path
+              className='group-hover:fill-[url(#logosSupabaseIcon0)]'
+              d='M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z'
+            />
+            <path
+              className='group-hover:fill-[url(#logosSupabaseIcon1)]'
+              fillOpacity='0.2'
+              d='M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z'
+            />
+            <path
+              className='group-hover:fill-[#3ecf8e]'
+              d='M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z'
+            />
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Supabase</p>
+        </div>
+
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-1000 animate-once hover:h-11 hover:w-[9.5rem] hover:bg-custom-black'>
+          <svg
+            width='28px'
+            height='28px'
+            preserveAspectRatio='xMinYMin meet'
+            viewBox='0 0 256 256'
+            id='bootstrap'
+          >
+            <path
+              className='group-hover:fill-[#563D7C]'
+              d='M0 222.991C0 241.223 14.779 256 33.009 256H222.99C241.223 256 256 241.221 256 222.991V33.01C256 14.777 241.221 0 222.991 0H33.01C14.777 0 0 14.779 0 33.009V222.99z'
+            ></path>
+            <path
+              className='fill-second-background-tech group-hover:fill-[#FFF]'
+              d='M106.158 113.238V76.985h31.911c3.04 0 5.97.253 8.792.76 2.822.506 5.319 1.41 7.49 2.713 2.17 1.303 3.907 3.112 5.21 5.427 1.302 2.316 1.954 5.283 1.954 8.9 0 6.513-1.954 11.217-5.862 14.111-3.907 2.895-8.9 4.342-14.979 4.342h-34.516zM72.075 50.5v155h75.112c6.947 0 13.713-.868 20.298-2.605 6.585-1.737 12.446-4.414 17.584-8.032 5.137-3.618 9.226-8.286 12.265-14.002 3.04-5.717 4.559-12.483 4.559-20.298 0-9.697-2.352-17.982-7.055-24.856-4.704-6.875-11.832-11.687-21.384-14.437 6.947-3.328 12.194-7.598 15.74-12.808 3.545-5.21 5.318-11.722 5.318-19.538 0-7.236-1.194-13.314-3.582-18.235-2.388-4.92-5.753-8.864-10.095-11.831-4.341-2.967-9.551-5.102-15.63-6.404-6.078-1.303-12.808-1.954-20.189-1.954H72.075zm34.083 128.515v-42.549h37.121c7.381 0 13.315 1.7 17.802 5.102 4.486 3.401 6.73 9.081 6.73 17.041 0 4.053-.688 7.381-2.063 9.986-1.375 2.605-3.22 4.668-5.536 6.187-2.315 1.52-4.993 2.605-8.032 3.257-3.04.65-6.223.976-9.552.976h-36.47z'
+            ></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Bootstrap</p>
+        </div>
+
+        <div className='group flex h-10 w-20 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1100ms] animate-once hover:h-11 hover:w-24 hover:bg-custom-black'>
+          <svg width='28px' height='28px' viewBox='0 0 128 128' id='git'>
+            <path
+              className='group-hover:fill-[#F34F29]'
+              d='M124.742 58.378l-55.117-55.114c-3.172-3.174-8.32-3.174-11.497 0l-11.443 11.446 14.518 14.518c3.375-1.139 7.243-.375 9.932 2.314 2.703 2.706 3.462 6.607 2.293 9.993l13.992 13.994c3.385-1.167 7.292-.413 9.994 2.295 3.78 3.777 3.78 9.9 0 13.679-3.78 3.78-9.901 3.78-13.683 0-2.842-2.844-3.545-7.019-2.105-10.521l-13.048-13.049-.002 34.341c.922.455 1.791 1.063 2.559 1.828 3.779 3.777 3.779 9.898 0 13.683-3.779 3.777-9.904 3.777-13.679 0-3.778-3.784-4.088-9.905-.311-13.683.934-.933 1.855-1.638 2.855-2.11v-34.659c-1-.472-1.92-1.172-2.856-2.111-2.861-2.86-3.396-7.06-1.928-10.576l-14.233-14.313-37.754 37.79c-3.175 3.177-3.155 8.325.02 11.5l55.126 55.114c3.173 3.174 8.325 3.174 11.503 0l54.86-54.858c3.175-3.176 3.178-8.327.004-11.501z'
+            ></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Git</p>
+        </div>
+
+        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1200ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg
+            className='group-hover:fill-second-background-tech'
+            width='32px'
+            height='32px'
+            viewBox='0 0 24 24'
+            id='github'
+          >
+            <path d='M12,2.2467A10.00042,10.00042,0,0,0,8.83752,21.73419c.5.08752.6875-.21247.6875-.475,0-.23749-.01251-1.025-.01251-1.86249C7,19.85919,6.35,18.78423,6.15,18.22173A3.636,3.636,0,0,0,5.125,16.8092c-.35-.1875-.85-.65-.01251-.66248A2.00117,2.00117,0,0,1,6.65,17.17169a2.13742,2.13742,0,0,0,2.91248.825A2.10376,2.10376,0,0,1,10.2,16.65923c-2.225-.25-4.55-1.11254-4.55-4.9375a3.89187,3.89187,0,0,1,1.025-2.6875,3.59373,3.59373,0,0,1,.1-2.65s.83747-.26251,2.75,1.025a9.42747,9.42747,0,0,1,5,0c1.91248-1.3,2.75-1.025,2.75-1.025a3.59323,3.59323,0,0,1,.1,2.65,3.869,3.869,0,0,1,1.025,2.6875c0,3.83747-2.33752,4.6875-4.5625,4.9375a2.36814,2.36814,0,0,1,.675,1.85c0,1.33752-.01251,2.41248-.01251,2.75,0,.26251.1875.575.6875.475A10.0053,10.0053,0,0,0,12,2.2467Z'></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Github</p>
+        </div>
+
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1300ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+          <svg width='32px' height='32px' preserveAspectRatio='xMidYMid' viewBox='0 0 256 204'>
+            <path
+              d='m0 110.848v-110.848l96 55.424v36.9493333l-64-36.9493333v73.898667z'
+              className='group-hover:fill-[#00b0ff]'
+            />
+            <path
+              d='m96 55.424 96-55.424v110.848l-64 36.949333-32-18.474666 64-36.9493337v-36.9493333l-64 36.9493333z'
+              className='group-hover:fill-[#0081cb]'
+            />
+            <path
+              d='m96 129.322667v36.949333l64 36.949333v-36.949333z'
+              className='group-hover:fill-[#00b0ff]'
+            />
+            <path
+              d='m160 203.221333 96-55.424v-73.8986663l-32 18.4746666v36.9493337l-64 36.949333zm64-147.797333v-36.9493333l32-18.4746667v36.9493333z'
+              className='group-hover:fill-[#0081cb]'
+            />
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Material UI</p>
+        </div>
+
+        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1400ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg width='28px' height='28px' viewBox='0 0 410 404'>
+            <path
+              d='M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z'
+              className='group-hover:fill-[url(#paint0_linear)]'
+            />
+            <path
+              d='M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.967 169.931 195.172 173.055 194.443 176.622L183.18 231.775C182.422 235.487 185.907 238.661 189.532 237.56L212.947 230.446C216.577 229.344 220.065 232.527 219.297 236.242L201.398 322.875C200.278 328.294 207.486 331.249 210.492 326.603L212.5 323.5L323.454 102.072C325.312 98.3645 322.108 94.137 318.036 94.9228L279.014 102.454C275.347 103.161 272.227 99.746 273.262 96.1583L298.731 7.86689C299.767 4.27314 296.636 0.855181 292.965 1.5744Z'
+              className='fill-second-background-tech group-hover:fill-[url(#paint1_linear)]'
+            />
+            <defs>
+              <linearGradient
+                id='paint0_linear'
+                x1='6.00017'
+                y1='32.9999'
+                x2='235'
+                y2='344'
+                gradientUnits='userSpaceOnUse'
+              >
+                <stop stopColor='#41D1FF' />
+                <stop offset='1' stopColor='#BD34FE' />
+              </linearGradient>
+              <linearGradient
+                id='paint1_linear'
+                x1='194.651'
+                y1='8.81818'
+                x2='236.076'
+                y2='292.989'
+                gradientUnits='userSpaceOnUse'
+              >
+                <stop stopColor='#FFEA83' />
+                <stop offset='0.0833333' stopColor='#FFDD35' />
+                <stop offset='1' stopColor='#FFA800' />
+              </linearGradient>
+            </defs>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Vite.js</p>
+        </div>
+
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1500ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+          <svg width='36px' height='36px' viewBox='0 0 24 24' id='linux'>
+            <path
+              className='fill-second-background-tech group-hover:fill-[#d8d8ff]'
+              d='M12.6 6.5c.1.1.2.1.4.2.1 0 .3.1.5.2h.1c.2-.3.3-.6.3-.9.1-.6-.4-1.2-1-1.2-.6.1-1 .7-1 1.3v.1c.2 0 .5.1.7.3zm4.5 8c-.3-.2-.6-.2-1-.3-.2-.9-.5-1.7-.9-2.5-.6-1.2-1.1-2.4-1.4-3.7-.2.3-.5.5-.9.6-.1.1-.3.1-.4.2-.3.2-.7.4-1.1.4h-.1c-.4 0-.7-.2-.9-.4-.1-.1-.2-.2-.3-.2-.1 0-.1-.1-.2-.1-.1 1.5-1 3.2-1.5 4.3-.3.8-.5 1.6-.5 2.4-.8-1.2-.2-2.7.1-3.3.4-.8.4-.9.3-.8-.7 1.1-2.1 3.5-.1 4.8 2.1 1.3 2.2 2.6 1 2.5.1.2.3.4.4.5 1.2 1 2.9 1.1 4.2.3 0-.1.1-.3.1-.4.1-.3.2-.7.2-1 .1-1.1.1-2.2.9-2.6.5-.2 1.2-.1 1.6.2.1.1.2.1.3.2.2.1.4.1.5.1h.6c.3-.4-.1-.8-.9-1.2zm-6.9-7.7.1-.1c.2-.3.5-.4.8-.5V6c0-.6-.4-1.1-.8-1.1-.3.1-.6.6-.6 1.2 0 .3.1.6.3.8.1 0 .2-.1.2-.1z'
+            ></path>
+            <path
+              className='group-hover:fill-[#d8d8ff]'
+              d='M8.5 17.4s0 .1 0 0c-.1-.1-.1-.3-.2-.4.1.2.1.3.2.4z'
+            ></path>
+            <path
+              className='group-hover:fill-[#b2b1ff]'
+              d='M15.4 22h-.2c-.6-.1-1.1-.4-1.3-1-.2-.7-.2-1.5.2-2.2.1-.3.2-.7.2-1 .1-1.1.1-2.2.9-2.6.5-.2 1.2-.1 1.6.2.1.1.2.1.3.2.2.1.4.1.5.1.4-.1.8 0 1.1.3.3.3.4.6.5 1 0 .2.1.5.2.6.5.5.7 1 .6 1.3-.1.5-.6.7-1.1 1-.5.2-1 .5-1.4.9-.5.7-1.3 1.1-2.1 1.2z'
+            ></path>
+            <path
+              className='group-hover:fill-[#6563ff]'
+              d='M17.9 15.9c-.4.5-1 .8-1.6.8-.6-.1-.8-.9-.7-1.5.1-.7.7-.7 1.5-.4.8.3 1.1.7.8 1.1zm-5.3-9.3c.1.1.3.1.4.2.2-.2.2-.4.2-.6 0-.4-.2-.7-.4-.7s-.5.3-.5.7v.3c.1.1.2.1.3.1zm-2.2.2.3-.3v-.3c0-.3-.2-.6-.4-.5-.2 0-.3.3-.3.6.1.3.3.5.4.5z'
+            ></path>
+            <path
+              className='group-hover:fill-[#6563ff]'
+              d='M17.3 10.8c-.8-1.3-2-2.1-2-3.7 0-1.9.2-5.4-3.3-5.1-3.5.3-2.5 4-2.6 5.3 0 1.1-.5 2.2-1.3 3.1-.1.1-.2.3-.3.4-.9 1.3-1.9 3-1.8 4.6.2-.1.4-.1.5-.1.8.1 1.2.9 1.7 1.8.1.1.1.3.2.4l.6.9.1.1c1.2.1 1.2-1.2-1-2.5-2-1.3-.6-3.7.1-4.8.1-.1.1 0-.3.8-.3.6-.9 2.1-.1 3.2 0-.8.2-1.6.5-2.4.5-1 1.4-2.8 1.5-4.3-.1-.2-.3-.5-.3-.8 0-.2.1-.4.3-.6.1 0 .2-.1.3-.2-.2-.2-.4-.5-.4-.8 0-.6.3-1.1.7-1.1.4 0 .7.4.8 1.1v.2c.2-.1.5-.1.7 0v-.1c-.1-.6.3-1.2 1-1.3.6.1 1.1.6 1 1.2 0 .3-.1.6-.3.9.3.1.5.4.5.7 0 .2-.1.3-.2.5.4 1.3.8 2.5 1.4 3.7.4.8.7 1.6.9 2.5.3 0 .7.1 1 .3.3.2.6.3.8.5.1.1.1.2.2.2 0 0 0 .1.1.1v.3c.1 0 .3.1.4.2.5-2-.5-3.9-1.4-5.2z'
+            ></path>
+            <path
+              className='group-hover:fill-[#8c8aff]'
+              d='M11.4 8.5c-.5 0-1-.3-1.4-.7l-.1-.1c-.1 0-.1 0-.1-.1s.1-.1.1-.1c.1 0 .1.1.3.2.3.4.7.6 1.2.6.5-.1 1-.2 1.4-.5.2-.1.4-.2.7-.3.1 0 .1 0 .1.1s0 .1-.1.1c-.2.1-.4.1-.6.3-.5.3-1 .5-1.5.5z'
+            ></path>
+            <path
+              className='group-hover:fill-[#b2b1ff]'
+              d='M13.5 6.9c-.2-.1-.3-.1-.5-.2-.1 0-.3-.1-.4-.2-.6-.6-1.7-.5-2.3.2l-.1.1s-.2.2-.4.3c-.2.2-.3.4-.3.6.1.4.3.7.7.9.1.1.2.2.3.2.2.3.6.4.9.4h.1c.4 0 .8-.1 1.1-.4.1-.1.2-.2.4-.2.5-.1 1-.5 1.1-1.1 0-.2-.3-.5-.6-.6zm-.1.8c-.2.1-.4.1-.6.3-.4.3-.9.5-1.5.6-.5 0-1-.3-1.4-.7l-.1-.1c-.1 0-.1 0-.1-.1s.1-.1.1-.1c.1 0 .1.1.3.2.3.4.7.6 1.2.6.5-.1 1-.2 1.4-.5.2-.1.4-.2.7-.3.1-.1.1-.1 0 .1.1-.1.1 0 0 0zm-5 14.1c-.6 0-1.2-.2-1.7-.5-.5-.2-1-.4-1.6-.4-.7-.1-1.2-.1-1.5-.6-.2-.4-.2-1 0-1.4v-.7c-.1-.4-.1-.7.1-1.1.2-.3.5-.6.9-.7.2 0 .4-.1.5-.3.1-.1.2-.2.2-.3.2-.5.8-.8 1.3-.8.9.1 1.4 1.1 1.9 2.2l.6.9c.5.7 1.1 1.3 1 2 0 .5-.3 1-.8 1.2-.2.4-.6.5-.9.5z'
+            ></path>
+            <path
+              className='group-hover:fill-[#6563ff]'
+              d='M13.8 19.4c-1.3.7-3 .6-4.2-.4.1.2.2.3.3.5v.1c.1.3.2.5.2.8 0 .2-.1.3-.1.5.5 0 1.1-.2 2-.3.5 0 1.1.1 1.8.2-.1-.5-.1-1 0-1.4z'
+            ></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>GNU / Linux</p>
+        </div>
+
+        <div className='group flex h-10 w-28 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-second-background-tech duration-300 ease-in-out animate-delay-[1600ms] animate-once hover:h-11 hover:w-32 hover:bg-custom-black'>
+          <svg
+            width='25px'
+            height='25px'
+            preserveAspectRatio='xMinYMin meet'
+            viewBox='0 0 256 255'
+            id='python'
+          >
+            <defs>
+              <linearGradient id='a' x1='12.959%' x2='79.639%' y1='12.039%' y2='78.201%'>
+                <stop offset='0%' stopColor='#387EB8'></stop>
+                <stop offset='100%' stopColor='#366994'></stop>
+              </linearGradient>
+              <linearGradient id='b' x1='19.128%' x2='90.742%' y1='20.579%' y2='88.429%'>
+                <stop offset='0%' stopColor='#FFE052'></stop>
+                <stop offset='100%' stopColor='#FFC331'></stop>
+              </linearGradient>
+            </defs>
+            <path
+              className='group-hover:fill-[url(#a)]'
+              d='M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z'
+            ></path>
+            <path
+              className='fill-background-beige group-hover:fill-[url(#b)]'
+              d='M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.131 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z'
+            ></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Python</p>
+        </div>
+
+        <div className='group flex h-10 w-36 animate-jump-in cursor-pointer items-center justify-center rounded-lg bg-taupe duration-300 ease-in-out animate-delay-[1700ms] animate-once hover:h-11 hover:w-40 hover:bg-custom-black'>
+          <svg
+            className='group-hover:fill-[#05A8DA]'
+            width='31px'
+            height='31px'
+            viewBox='0 0 24 24'
+            id='wordpress'
+          >
+            <path d='M12,2a10.00009,10.00009,0,1,0,10,9.99976A10.01117,10.01117,0,0,0,12,2ZM3.00928,11.99976a8.95547,8.95547,0,0,1,.77844-3.659L8.07654,20.09131A8.99123,8.99123,0,0,1,3.00928,11.99976ZM12,20.99121a8.98726,8.98726,0,0,1-2.54-.36633l2.69788-7.83869,2.7633,7.57135a.84386.84386,0,0,0,.06446.12391A8.97138,8.97138,0,0,1,12,20.99121ZM13.239,7.78436c.54126-.02844,1.02906-.08539,1.02906-.08539a.37165.37165,0,0,0-.05738-.741s-1.4563.11432-2.39648.11432c-.8833,0-2.3678-.11432-2.3678-.11432a.37165.37165,0,0,0-.057.741s.4585.05695.943.08539l1.40075,3.838-1.968,5.90087L6.49133,7.78436C7.033,7.75592,7.52026,7.699,7.52026,7.699a.37166.37166,0,0,0-.05749-.741s-1.45593.11432-2.39612.11432c-.1687,0-.36768-.00415-.57861-.01093A8.98815,8.98815,0,0,1,18.07117,5.36957c-.0387-.00238-.07654-.0072-.11634-.0072A1.55669,1.55669,0,0,0,16.445,6.958a4.21016,4.21016,0,0,0,.88317,2.1087,4.73577,4.73577,0,0,1,.74122,2.47955,10.88314,10.88314,0,0,1-.68409,2.9065l-.897,2.99634ZM16.52,19.771l2.74609-7.9397A8.489,8.489,0,0,0,19.94983,8.611a6.9105,6.9105,0,0,0-.06043-.92456A8.99224,8.99224,0,0,1,16.52,19.771Z'></path>
+          </svg>
+          <p className='ml-1 text-base font-bold group-hover:text-background-beige'>Wordpress</p>
         </div>
       </div>
     </main>

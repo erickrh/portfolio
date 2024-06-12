@@ -14,6 +14,7 @@ const config: Config = {
         'custom-black': '#181818',
         'grayish-yellow': '#f0f0e8',
         taupe: '#807b6b',
+        'second-background-tech': '#9ba49b',
       },
       keyframes: {
         fadeIn: {
