@@ -96,6 +96,11 @@ export default function Home() {
           knowledge and to help build technology that can improve our environment and make a
           positive impact on our world.
         </p>
+        <p className='mx-5 leading-7'>
+          My love for technology has driven my career development, culminating in graduating with
+          honors in systems engineering. My greatest strengths are a love of learning, perseverance,
+          and persistence.
+        </p>
       </div>
 
       <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
@@ -105,6 +110,8 @@ export default function Home() {
       <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
 
       <TechStack />
+
+      <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
     </main>
   );
 }
