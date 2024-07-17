@@ -12,6 +12,8 @@ import { playfair } from './fonts';
 import Image from 'next/image';
 import TechStack from './components/TechStack';
 import Companies from './components/Companies';
+import SchoolIcon from '@mui/icons-material/School';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export default function Home() {
   const theme = useTheme();
@@ -101,6 +103,42 @@ export default function Home() {
           honors in systems engineering. My greatest strengths are a love of learning, perseverance,
           and persistence.
         </p>
+      </div>
+
+      <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
+
+      <h2 className={`px-5 text-3xl ${playfair.className} text-center antialiased`}>
+        Academic Background
+      </h2>
+
+      <div className='animate-fade space-y-5 animate-once'>
+        <p className='mx-5 mt-5 leading-7'>
+          I am characterized by my love of knowledge, which drives me to learn on my own. However, I
+          also have official academic recognitions, including:
+        </p>
+
+        <div className='mx-5 flex flex-col justify-center space-y-4'>
+          <div className='flex h-48 w-full flex-col items-center justify-center rounded-lg border border-gray-300 bg-transparent'>
+            <SchoolIcon sx={{ fontSize: '2.8rem', marginBottom: '1.25rem' }} />
+            <p className='mx-5 leading-7 text-gray-700'>Universidad Nacional y/a Distancia</p>
+            <p className='mx-5 leading-7 text-gray-700'>Systems Engineer</p>
+          </div>
+          <div className='flex h-48 w-full flex-col items-center justify-center rounded-lg border border-gray-300 bg-transparent'>
+            <SchoolIcon sx={{ fontSize: '2.8rem', marginBottom: '1.25rem' }} />
+            <p className='mx-5 leading-7 text-gray-700'>Universidad Popular del Cesar</p>
+            <p className='mx-5 leading-7 text-gray-700'>Business Administration</p>
+          </div>
+          <div className='flex h-48 w-full flex-col items-center justify-center rounded-lg border border-gray-300 bg-transparent'>
+            <ArticleIcon sx={{ fontSize: '2.8rem', marginBottom: '1.25rem' }} />
+            <p className='mx-5 leading-7 text-gray-700'>Cisco Networking Academy</p>
+            <p className='mx-5 leading-7 text-gray-700'>NDG Linux Unhatched</p>
+          </div>
+          <div className='flex h-48 w-full flex-col items-center justify-center rounded-lg border border-gray-300 bg-transparent'>
+            <ArticleIcon sx={{ fontSize: '2.8rem', marginBottom: '1.25rem' }} />
+            <p className='mx-5 leading-7 text-gray-700'>Cisco Networking Academy</p>
+            <p className='mx-5 leading-7 text-gray-700'>NDG Linux Essentials</p>
+          </div>
+        </div>
       </div>
 
       <div className='mx-5 my-10 border-t-[1px] border-solid border-black'></div>
