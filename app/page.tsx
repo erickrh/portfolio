@@ -155,7 +155,7 @@ export default function Home() {
       <h2 className={`px-5 text-3xl ${playfair.className} text-center antialiased`}>Projects</h2>
 
       <p className='mx-5 mt-5 leading-7'>
-        These are some of the projects in which I have had the pleasure to be a part:
+        These are some of the projects I have had the pleasure of working on:
       </p>
 
       <Link href='https://main.d1aih843z9b9o.amplifyapp.com/' target='_blank'>
